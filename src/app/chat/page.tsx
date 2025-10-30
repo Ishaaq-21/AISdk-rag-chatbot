@@ -33,9 +33,9 @@ const RAGPage = () => {
     setInput("");
   };
   return (
-    <div className="max-w-4xl p-6 mx-auto size-full relative ">
+    <div className="max-w-4xl  mx-auto size-full relative h-[calc(100vh-1rem)] ">
       <div className="flex flex-col h-full">
-        <Conversation className="h-full">
+        <Conversation className="">
           <ConversationContent>
             {messages.length === 0 ? (
               <ConversationEmptyState
@@ -67,24 +67,24 @@ const RAGPage = () => {
           {(status === "submitted" || status === "streaming") && <Loader />}
 
           <ConversationScrollButton />
-
-          <PromptInput className="" onSubmit={handleSubmit}>
-            <PromptInputBody>
-              <PromptInputTextarea
-                value={input}
-                onChange={(e) => {
-                  setInput(e.target.value);
-                }}
-              />
-            </PromptInputBody>
-            <PromptInputTools />
-            <PromptInputSubmit
-              className="cursor-pointer"
-              disabled={!input && !status}
-              status={status}
-            />
-          </PromptInput>
         </Conversation>
+        <PromptInput onSubmit={handleSubmit}>
+          <PromptInputBody className="">
+            <PromptInputTextarea
+              value={input}
+              className="p-5 max-h-3"
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            />
+          </PromptInputBody>
+          <PromptInputTools />
+          <PromptInputSubmit
+            className="cursor-pointer"
+            disabled={!input && !status}
+            status={status}
+          />
+        </PromptInput>
       </div>
     </div>
   );
